@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제1회 제주시농협 AI 공모전 참가 신청</title>
-    <!-- Tailwind CSS (디자인용) -->
+    <title>제1회 제주시농협 AI 공모전 출품</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 파일 업로드 시 스피너 애니메이션 */
         .loader {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #2563eb; /* 시원한 파란색(blue-600)으로 변경 */
+            border-top: 4px solid #2563eb;
             border-radius: 50%;
             width: 24px;
             height: 24px;
@@ -27,7 +25,9 @@
 </head>
 <body class="bg-blue-50 font-sans min-h-screen flex items-center justify-center p-4">
 
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl overflow-hidden my-8">
+    <!-- 메인 컨테이너 -->
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-3xl overflow-hidden my-8" id="mainContainer">
+        
         <!-- 헤더 영역 -->
         <div class="bg-blue-600 p-8 text-white text-center">
             <p class="text-blue-200 text-sm font-bold mb-2 tracking-wider">AI 한 스푼, 업무는 가볍게!</p>
@@ -35,7 +35,7 @@
             <p class="mt-3 text-blue-100 text-sm">참가 신청서</p>
         </div>
 
-        <!-- 폼 영역 -->
+        <!-- 폼 영역 (제출 성공 시 숨겨짐) -->
         <form id="submitForm" class="p-8 space-y-8">
             
             <!-- 1. 참가자 정보 -->
@@ -44,7 +44,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                         <label for="office" class="block text-sm font-medium text-gray-700">사무소명</label>
-                        <input type="text" id="office" required placeholder="예: 본점 신용기획팀 / 삼양지점 / 하나로마트오라점" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <input type="text" id="office" required placeholder="예: 본점 기획부 / 삼양지점" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                     </div>
                     <div>
                         <label for="position" class="block text-sm font-medium text-gray-700">직명</label>
@@ -66,7 +66,7 @@
                 </div>
                 <div>
                     <label for="aiTools" class="block text-sm font-medium text-gray-700">주요 활용 AI툴</label>
-                    <input type="text" id="aiTools" required placeholder="예: ChatGPT, Gemini, Claude 등" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <input type="text" id="aiTools" required placeholder="예: ChatGPT, Claude, Midjourney 등" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
             </div>
 
@@ -89,8 +89,27 @@
 
             <!-- 파일 첨부 -->
             <div class="border-b border-gray-200 pb-6">
-                <label for="fileUpload" class="block text-sm font-medium text-gray-700">구현물/산출물 파일 첨부 <span class="text-blue-600 font-bold">(선택사항)</span></label>
-                <p class="text-xs text-gray-500 mb-3 mt-1">※ 용량이 큰 경우(10MB 초과) 담당자(신용기획팀 좌동윤) 이메일(joker0715@naver.com)로 별도 제출 바랍니다.</p>
+                <label for="fileUpload" class="block text-sm font-medium text-gray-700 mb-2">구현물/산출물 파일 첨부 <span class="text-blue-600 font-bold">(선택사항)</span></label>
+                
+                <!-- 💡 파일 용량 경고 문구 강조 디자인 -->
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4 rounded-r-lg">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-red-700 font-bold">
+                                주의: 첨부 파일 크기는 최대 10MB로 제한됩니다.
+                            </p>
+                            <p class="text-sm text-red-600 mt-1">
+                                용량이 큰 영상이나 대용량 파일은 담당자(신용기획팀 좌동윤: <a href="mailto:joker0715@naver.com" class="underline">joker0715@naver.com</a>) 이메일로 별도 제출 바랍니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-500 transition-colors bg-blue-50/50">
                     <div class="space-y-1 text-center">
                         <svg class="mx-auto h-12 w-12 text-blue-300" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -109,17 +128,17 @@
             </div>
 
             <!-- 필수 확인 사항 -->
-            <div class="bg-red-50 p-5 rounded-lg border border-red-100 space-y-4">
-                <h3 class="text-sm font-bold text-red-600 flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+            <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 space-y-4">
+                <h3 class="text-sm font-bold text-gray-800 flex items-center">
+                    <svg class="w-4 h-4 mr-1 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     제출 전 필수 확인 사항
                 </h3>
                 <label class="flex items-start cursor-pointer">
-                    <input type="checkbox" required class="mt-1 shrink-0 text-blue-600 focus:ring-blue-500 h-5 w-5 border-gray-300 rounded">
+                    <input type="checkbox" id="securityAgree" required class="mt-1 shrink-0 text-blue-600 focus:ring-blue-500 h-5 w-5 border-gray-300 rounded">
                     <span class="ml-3 text-sm text-gray-700 leading-relaxed"><strong>[보안 준수]</strong> 아이디어 산출 및 구현 과정에서 고객의 개인정보, 금융데이터, 기타 우리농협 내부 민감정보를 외부 생성형 AI에 절대 입력하지 않았음을 확인합니다.</span>
                 </label>
                 <label class="flex items-start cursor-pointer">
-                    <input type="checkbox" required class="mt-1 shrink-0 text-blue-600 focus:ring-blue-500 h-5 w-5 border-gray-300 rounded">
+                    <input type="checkbox" id="usageAgree" required class="mt-1 shrink-0 text-blue-600 focus:ring-blue-500 h-5 w-5 border-gray-300 rounded">
                     <span class="ml-3 text-sm text-gray-700 leading-relaxed"><strong>[활용 동의]</strong> 제출된 아이디어 및 산출물은 우리농협의 업무 효율화를 위한 자산으로 활용되는 것에 동의합니다.</span>
                 </label>
             </div>
@@ -129,23 +148,42 @@
                 <span id="btnText">참가 신청서 제출하기</span>
             </button>
             
-            <!-- 결과 메시지 영역 -->
-            <div id="resultMessage" class="hidden text-center text-sm font-medium mt-4 p-4 rounded-lg shadow-inner"></div>
+            <!-- 에러 메시지 영역 (제출 실패시에만 표시됨) -->
+            <div id="errorMessage" class="hidden text-center text-sm font-medium mt-4 p-4 rounded-lg shadow-inner bg-red-100 text-red-800 border border-red-200"></div>
         </form>
+
+        <!-- 💡 접수 완료 페이지 (초기에는 숨겨짐) -->
+        <div id="successPage" class="hidden flex-col items-center justify-center p-12 py-20 text-center">
+            <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">접수가 완료되었습니다!</h2>
+            <p class="text-gray-600 mb-8 text-lg">제1회 제주시농협 AI 활용 공모전에<br>참여해 주셔서 진심으로 감사드립니다.</p>
+            <div class="bg-gray-50 p-6 rounded-lg w-full max-w-md border border-gray-200 text-sm text-gray-600 text-left">
+                <ul class="space-y-2">
+                    <li>✓ 접수 내역은 담당 부서로 안전하게 전달되었습니다.</li>
+                    <li>✓ 심사 결과는 추후 사내 게시판을 통해 공지될 예정입니다.</li>
+                </ul>
+            </div>
+            <button type="button" onclick="location.reload()" class="mt-8 px-6 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors">
+                새로운 신청서 작성하기
+            </button>
+        </div>
     </div>
 
     <script>
         // *** 주의: GAS 배포 후 생성된 '웹 앱 URL'을 아래에 붙여넣으세요! ***
-        const GAS_URL = 'https://script.google.com/macros/s/AKfycbwNiplIGkPNDkhBe63SOUJtz2kfHQCOPHBZXN6xbrifxdkQlBE431lt1dsZchYPYxIvfA/exec';
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycby2D-hNhnIT5xWUcErKTGKYRRh0FkKcZRyXA-P7NEww1CcUnChpKzWIgtVm8RIBF-2q1Q/exec';
 
         const form = document.getElementById('submitForm');
+        const successPage = document.getElementById('successPage');
         const fileInput = document.getElementById('fileUpload');
         const fileNameDisplay = document.getElementById('fileNameDisplay');
         const submitBtn = document.getElementById('submitBtn');
         const btnText = document.getElementById('btnText');
-        const resultMessage = document.getElementById('resultMessage');
+        const errorMessage = document.getElementById('errorMessage');
 
-        // 파일 선택 시 파일명 표시 (파란색 테마 적용)
+        // 파일 선택 시 파일명 표시
         fileInput.addEventListener('change', function(e) {
             if(e.target.files.length > 0) {
                 fileNameDisplay.textContent = `선택된 파일: ${e.target.files[0].name} (${(e.target.files[0].size / 1024 / 1024).toFixed(2)} MB)`;
@@ -162,12 +200,18 @@
             
             const file = fileInput.files[0];
 
+            // 10MB 크기 제한 검사 (제출 버튼 누르자마자 확인)
+            if (file && file.size > 10 * 1024 * 1024) {
+                alert("파일 크기가 10MB를 초과합니다. 안내된 이메일로 별도 제출해주시기 바랍니다.");
+                return;
+            }
+
             // 제출 버튼 로딩 상태로 변경
             submitBtn.disabled = true;
             submitBtn.classList.replace('bg-blue-600', 'bg-gray-400');
             submitBtn.classList.replace('hover:bg-blue-700', 'hover:bg-gray-400');
             btnText.innerHTML = '<div class="loader"></div> 안전하게 제출 중... (최대 1분 소요)';
-            resultMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
 
             // 데이터를 GAS로 전송하는 공통 함수
             const sendData = (base64Data, fileName, mimeType) => {
@@ -177,11 +221,13 @@
                     name: document.getElementById('name').value,
                     title: document.getElementById('title').value,
                     aiTools: document.getElementById('aiTools').value,
-                    // 라디오 버튼 대신 파일 첨부 여부(file 객체 존재 유무)에 따라 자동 판별하도록 수정
-                    submitType: file ? '실제 구현물 / 산출물 포함' : '아이디어 제안',
+                    submitType: file ? '실제 구현물 포함' : '아이디어 제안',
                     background: document.getElementById('background').value,
                     mainContent: document.getElementById('mainContent').value,
                     expectedEffect: document.getElementById('expectedEffect').value,
+                    // 동의 여부 추가
+                    securityAgree: document.getElementById('securityAgree').checked ? '동의함' : '미동의',
+                    usageAgree: document.getElementById('usageAgree').checked ? '동의함' : '미동의',
                     fileName: fileName,
                     mimeType: mimeType,
                     fileData: base64Data
@@ -194,14 +240,10 @@
                 .then(response => response.json())
                 .then(data => {
                     if(data.result === 'success') {
-                        // 성공 처리
-                        form.reset();
-                        fileNameDisplay.textContent = '선택된 파일 없음';
-                        fileNameDisplay.classList.remove('text-blue-600', 'font-semibold');
-                        
-                        resultMessage.textContent = '🎉 제출이 완료되었습니다! 참여해 주셔서 감사합니다.';
-                        resultMessage.classList.replace('hidden', 'block');
-                        resultMessage.className = 'block text-center text-sm font-medium mt-4 p-4 rounded-lg shadow-inner bg-blue-100 text-blue-800 border border-blue-200';
+                        // 💡 성공 처리: 폼을 숨기고 완료 페이지 표시
+                        form.classList.add('hidden');
+                        successPage.classList.remove('hidden');
+                        successPage.classList.add('flex'); // flex 속성 부여
                         
                         // 화면 최상단으로 스크롤
                         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -211,12 +253,10 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    resultMessage.textContent = '❌ 제출 중 오류가 발생했습니다. 다시 시도해주세요.';
-                    resultMessage.classList.replace('hidden', 'block');
-                    resultMessage.className = 'block text-center text-sm font-medium mt-4 p-4 rounded-lg shadow-inner bg-red-100 text-red-800 border border-red-200';
-                })
-                .finally(() => {
-                    // 버튼 상태 복구
+                    errorMessage.textContent = '❌ 제출 중 오류가 발생했습니다. 다시 시도해주세요. (' + error.message + ')';
+                    errorMessage.classList.replace('hidden', 'block');
+                    
+                    // 에러 시 버튼 상태 복구
                     submitBtn.disabled = false;
                     submitBtn.classList.replace('bg-gray-400', 'bg-blue-600');
                     submitBtn.classList.replace('hover:bg-gray-400', 'hover:bg-blue-700');
@@ -226,16 +266,6 @@
 
             // 파일이 첨부된 경우
             if (file) {
-                // 10MB 크기 제한 검사
-                if (file.size > 10 * 1024 * 1024) {
-                    alert("파일 크기는 10MB를 초과할 수 없습니다. 담당자 이메일로 별도 제출해주세요.");
-                    submitBtn.disabled = false;
-                    submitBtn.classList.replace('bg-gray-400', 'bg-blue-600');
-                    submitBtn.classList.replace('hover:bg-gray-400', 'hover:bg-blue-700');
-                    btnText.textContent = '참가 신청서 제출하기';
-                    return;
-                }
-
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     const base64Data = event.target.result.split(',')[1];
@@ -243,7 +273,7 @@
                 };
                 reader.readAsDataURL(file);
             } else {
-                // 파일이 첨부되지 않은 경우 (아이디어 제안 등)
+                // 파일이 첨부되지 않은 경우
                 sendData("", "", "");
             }
         });
