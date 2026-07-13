@@ -45,7 +45,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                         <label for="office" class="block text-sm font-medium text-gray-700">사무소명</label>
-                        <input type="text" id="office" required placeholder="예: 본점 기획부 / 삼양지점" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <input type="text" id="office" required placeholder="예: 본점 기획부" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                     </div>
                     <div>
                         <label for="position" class="block text-sm font-medium text-gray-700">직명</label>
@@ -67,7 +67,7 @@
                 </div>
                 <div>
                     <label for="aiTools" class="block text-sm font-medium text-gray-700">주요 활용 AI툴</label>
-                    <input type="text" id="aiTools" required placeholder="예: ChatGPT, Claude, Midjourney 등" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <input type="text" id="aiTools" required placeholder="예: ChatGPT, Claude 등" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
             </div>
 
@@ -92,10 +92,9 @@
             <div class="border-b border-gray-200 pb-6">
                 <label for="fileUpload" class="block text-sm font-medium text-gray-700 mb-2">구현물/산출물 파일 첨부 <span class="text-blue-600 font-bold">(선택사항)</span></label>
                 
-                <!-- 강조된 안내 문구 -->
                 <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4 text-center">
-                    <p class="text-sm font-bold text-red-600">※ 주의: 첨부 파일 크기는 최대 10MB로 제한됩니다.</p>
-                    <p class="text-sm mt-1 text-blue-600 font-bold">용량이 큰 영상이나 대용량 파일은 담당자(신용기획팀 좌동윤: joker0715@naver.com) 이메일로 별도 제출 바랍니다.</p>
+                    <p class="text-xs font-bold text-red-600">※ 주의: 첨부 파일 크기는 최대 10MB로 제한됩니다.</p>
+                    <p class="text-xs mt-1 text-blue-600 font-bold leading-tight">용량이 큰 영상이나 대용량 파일은 담당자(신용기획팀 좌동윤: joker0715@naver.com) 이메일로 별도 제출 바랍니다.</p>
                 </div>
 
                 <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-500 transition-colors bg-blue-50/50">
@@ -108,10 +107,9 @@
                                 <span>파일 선택하기</span>
                                 <input id="fileUpload" name="fileUpload" type="file" class="sr-only" multiple>
                             </label>
-                            <p class="pl-1">또는 드래그 앤 드롭 (다중 선택 가능)</p>
+                            <p class="pl-1">또는 드래그 앤 드롭</p>
                         </div>
                         
-                        <!-- 선택된 파일 리스트 및 용량 표시 영역 -->
                         <div id="fileListContainer" class="hidden mt-4 text-left bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
                             <p class="text-sm font-bold text-gray-700 mb-2 border-b pb-2">첨부된 파일 (<span id="fileCount">0</span>개)</p>
                             <ul id="fileList" class="text-sm text-gray-600 space-y-2 mb-3 max-h-40 overflow-y-auto"></ul>
@@ -121,10 +119,9 @@
                             </div>
                         </div>
                         
-                        <!-- 용량 초과 경고 메시지 -->
                         <div id="sizeWarning" class="hidden mt-3 p-3 bg-red-100 border border-red-300 text-red-700 text-sm rounded-lg flex items-center text-left">
                             <svg class="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                            <span>총 용량이 <strong>10MB를 초과</strong>했습니다. 파일이 제대로 첨부되지 않을 수 있으니 파일을 삭제하여 용량을 줄이거나 메일로 제출해 주세요.</span>
+                            <span>총 용량이 10MB를 초과했습니다. 파일을 삭제하거나 메일로 제출해 주세요.</span>
                         </div>
                         
                         <p id="fileNameDisplay" class="text-xs text-gray-500 mt-2 hidden">선택된 파일 없음</p>
@@ -153,12 +150,11 @@
                 <span id="btnText">참가 신청서 제출하기</span>
             </button>
             
-            <!-- 에러 메시지 영역 -->
             <div id="errorMessage" class="hidden text-center text-sm font-medium mt-4 p-4 rounded-lg shadow-inner bg-red-100 text-red-800 border border-red-200"></div>
         </form>
     </div>
 
-    <!-- 성공 완료 페이지 (초기에는 숨김) -->
+    <!-- 성공 페이지 -->
     <div id="successPage" class="hidden flex-col items-center justify-center bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden my-8 p-12 text-center">
         <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6">
             <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -166,22 +162,14 @@
             </svg>
         </div>
         <h2 class="text-3xl font-bold text-gray-800 mb-4">제출이 완료되었습니다!</h2>
-        <p class="text-gray-600 mb-8 leading-relaxed">제1회 제주시농협 AI 활용 공모전에 참여해 주셔서 감사합니다.<br>제출하신 소중한 아이디어는 성공적으로 접수되었습니다.</p>
-        <div class="bg-gray-50 p-6 rounded-lg w-full max-w-md border border-gray-200 text-sm text-gray-600 text-left mb-8">
-            <ul class="space-y-2">
-                <li>✓ 접수 내역은 담당 부서로 안전하게 전달되었습니다.</li>
-                <li>✓ 심사 결과는 8월 중순 경 시행되는 문서를 통해 확인하실 수 있습니다.</li>
-             </ul>
-        </div>        
+        <p class="text-gray-600 mb-8 leading-relaxed">제1회 제주시농협 AI 활용 공모전에 참여해 주셔서 감사합니다.</p>
         <button onclick="location.reload()" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors">
             새로운 신청서 작성하기
         </button>
     </div>
 
     <script>
-        // *** 주의: GAS 배포 후 생성된 '웹 앱 URL'을 아래에 붙여넣으세요! ***
         const GAS_URL = 'https://script.google.com/macros/s/AKfycbygCoFouWGu1ucNDdSvpbOIg8QOUBa7g5rKxx6WM3A7UndVwVZoW1Z1Qy9jqStNqkTAJg/exec';
-
         const formPage = document.getElementById('formPage');
         const form = document.getElementById('submitForm');
         const successPage = document.getElementById('successPage');
@@ -198,177 +186,91 @@
 
         let isOverSize = false;
 
-        // 파일을 화면에 그리고 상태를 갱신하는 통합 함수
         const updateFileUI = () => {
             const files = fileInput.files;
-            fileList.innerHTML = ''; // 리스트 초기화
-            
+            fileList.innerHTML = '';
             if(files.length > 0) {
                 let totalSize = 0;
-                
-                // 파일 리스트 요소 생성 및 용량 합산
                 Array.from(files).forEach((file, index) => {
                     totalSize += file.size;
-                    
                     const li = document.createElement('li');
                     li.className = 'flex justify-between items-center bg-white p-3 rounded-md border border-gray-200 shadow-sm';
-                    
                     li.innerHTML = `
                         <div class="flex items-center overflow-hidden">
-                            <svg class="w-5 h-5 text-gray-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path></svg>
                             <span class="truncate font-medium text-gray-700 pr-2">${file.name}</span>
                             <span class="text-xs text-gray-500 whitespace-nowrap">(${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
                         </div>
-                        <button type="button" class="remove-file-btn text-gray-400 hover:text-red-500 focus:outline-none flex-shrink-0 ml-2 transition-colors" data-index="${index}" title="파일 삭제">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
+                        <button type="button" class="remove-file-btn text-gray-400 hover:text-red-500 ml-2" data-index="${index}">✕</button>
                     `;
-                    
-                    // 삭제 버튼 클릭 이벤트 (DataTransfer를 활용하여 파일 리스트 재구성)
                     li.querySelector('.remove-file-btn').addEventListener('click', function() {
                         const removeIndex = parseInt(this.getAttribute('data-index'));
                         const dt = new DataTransfer();
-                        const currentFiles = fileInput.files;
-                        
-                        // 삭제하려는 인덱스를 제외하고 다시 DataTransfer에 담기
-                        for (let i = 0; i < currentFiles.length; i++) {
-                            if (i !== removeIndex) {
-                                dt.items.add(currentFiles[i]);
-                            }
+                        for (let i = 0; i < fileInput.files.length; i++) {
+                            if (i !== removeIndex) dt.items.add(fileInput.files[i]);
                         }
-                        
-                        // 변경된 파일 리스트를 input에 다시 적용 후 UI 업데이트
                         fileInput.files = dt.files;
                         updateFileUI();
                     });
-
                     fileList.appendChild(li);
                 });
-
-                const totalSizeMB = (totalSize / 1024 / 1024).toFixed(2);
+                totalSizeDisplay.textContent = `${(totalSize / 1024 / 1024).toFixed(2)} MB`;
                 fileCount.textContent = files.length;
-                totalSizeDisplay.textContent = `${totalSizeMB} MB`;
-                
-                // UI 노출
                 fileListContainer.classList.remove('hidden');
                 fileNameDisplay.classList.add('hidden');
-
-                // 10MB 초과 여부 체크 및 경고 처리
-                if (totalSize > 10 * 1024 * 1024) {
-                    totalSizeDisplay.classList.replace('text-blue-600', 'text-red-600');
-                    sizeWarning.classList.remove('hidden');
-                    isOverSize = true;
-                } else {
-                    totalSizeDisplay.classList.replace('text-red-600', 'text-blue-600');
-                    sizeWarning.classList.add('hidden');
-                    isOverSize = false;
-                }
+                isOverSize = totalSize > 10 * 1024 * 1024;
+                sizeWarning.classList.toggle('hidden', !isOverSize);
             } else {
-                // 파일이 모두 삭제되거나 선택이 취소된 경우의 초기화
                 fileListContainer.classList.add('hidden');
-                sizeWarning.classList.add('hidden');
                 fileNameDisplay.classList.remove('hidden');
-                fileNameDisplay.textContent = '선택된 파일 없음';
                 isOverSize = false;
+                sizeWarning.classList.add('hidden');
             }
         };
 
-        // 파일 선택 시 이벤트 리스너
         fileInput.addEventListener('change', updateFileUI);
 
-        // 다중 파일을 Base64로 병렬 변환하기 위한 Promise 함수
-        const getBase64 = (file) => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve({
-                    fileName: file.name,
-                    mimeType: file.type,
-                    fileData: reader.result.split(',')[1] // 실제 데이터만 추출
-                });
-                reader.onerror = error => reject(error);
-            });
-        };
+        const getBase64 = (file) => new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve({ fileName: file.name, mimeType: file.type, fileData: reader.result.split(',')[1] });
+        });
 
-        // 폼 제출 이벤트
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            const files = fileInput.files;
+            if (isOverSize && !confirm("파일 용량이 10MB를 초과합니다. 제출하시겠습니까?")) return;
 
-            // 10MB 크기 제한 경고 확인 (제출 시 한 번 더 사용자에게 물어봄)
-            if (isOverSize) {
-                if(!confirm("총 파일 용량이 10MB를 초과합니다. 파일이 정상적으로 첨부되지 않거나 제출에 실패할 수 있습니다.\n그래도 이대로 제출하시겠습니까?")) {
-                    return; // 취소 누르면 제출 중단
-                }
-            }
-
-            // 제출 버튼 로딩 상태로 변경
             submitBtn.disabled = true;
-            submitBtn.classList.replace('bg-blue-600', 'bg-gray-400');
-            submitBtn.classList.replace('hover:bg-blue-700', 'hover:bg-gray-400');
-            btnText.innerHTML = '<div class="loader"></div> 데이터 처리 중... (최대 1분 소요)';
-            errorMessage.classList.add('hidden');
+            btnText.innerHTML = '<div class="loader"></div> 처리 중...';
 
-            // 데이터를 GAS로 전송하는 내부 함수
-            const sendData = (filesDataArray) => {
+            try {
+                const filesDataArray = await Promise.all(Array.from(fileInput.files).map(getBase64));
                 const payload = {
                     office: document.getElementById('office').value,
                     position: document.getElementById('position').value,
                     name: document.getElementById('name').value,
                     title: document.getElementById('title').value,
                     aiTools: document.getElementById('aiTools').value,
-                    submitType: files.length > 0 ? '실제 구현물 포함' : '아이디어 제안',
+                    submitType: fileInput.files.length > 0 ? '실제 구현물 포함' : '아이디어 제안',
                     background: document.getElementById('background').value,
                     mainContent: document.getElementById('mainContent').value,
                     expectedEffect: document.getElementById('expectedEffect').value,
                     securityAgree: document.getElementById('securityAgree').checked ? '동의함' : '미동의',
                     usageAgree: document.getElementById('usageAgree').checked ? '동의함' : '미동의',
-                    files: filesDataArray // 배열 통째로 전송
+                    files: filesDataArray
                 };
 
-                fetch(GAS_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.result === 'success') {
-                        // 성공 처리: 폼을 숨기고 완료 페이지 표시
-                        formPage.classList.add('hidden');
-                        successPage.classList.remove('hidden');
-                        successPage.classList.add('flex');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    } else {
-                        throw new Error(data.error || '알 수 없는 오류');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    errorMessage.textContent = '❌ 제출 중 오류가 발생했습니다. 용량이 너무 크거나 인터넷 연결이 불안정할 수 있습니다. (' + error.message + ')';
-                    errorMessage.classList.replace('hidden', 'block');
-                    
-                    submitBtn.disabled = false;
-                    submitBtn.classList.replace('bg-gray-400', 'bg-blue-600');
-                    submitBtn.classList.replace('hover:bg-gray-400', 'hover:bg-blue-700');
-                    btnText.textContent = '참가 신청서 제출하기';
-                });
-            };
-
-            try {
-                // 여러 파일을 비동기로 한 번에 인코딩 처리
-                if (files.length > 0) {
-                    const filesDataArray = await Promise.all(Array.from(files).map(file => getBase64(file)));
-                    sendData(filesDataArray);
-                } else {
-                    sendData([]); // 첨부 파일이 없는 경우 빈 배열 전송
-                }
-            } catch (error) {
-                console.error("파일 변환 중 오류:", error);
-                errorMessage.textContent = '❌ 파일 처리 중 오류가 발생했습니다.';
-                errorMessage.classList.replace('hidden', 'block');
+                const response = await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(payload) });
+                const data = await response.json();
+                if(data.result === 'success') {
+                    formPage.classList.add('hidden');
+                    successPage.classList.remove('hidden');
+                    successPage.classList.add('flex');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else throw new Error();
+            } catch (err) {
+                errorMessage.textContent = '❌ 제출 오류 발생. 다시 시도해주세요.';
+                errorMessage.classList.remove('hidden');
                 submitBtn.disabled = false;
-                submitBtn.classList.replace('bg-gray-400', 'bg-blue-600');
                 btnText.textContent = '참가 신청서 제출하기';
             }
         });
